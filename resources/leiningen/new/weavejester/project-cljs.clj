@@ -7,11 +7,15 @@
                  [org.clojure/clojurescript "1.7.228"]]
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-doo "0.1.6"]]
-  :cljsbuild
-  {:builds
-   {:test
-    {:source-paths ["src" "test"]
-     :compiler {:output-to "target/main.js"
-                :output-dir "target"
-                :main {{top-namespace}}.test-runner
-                :optimizations :simple}}}})
+  :doo {:paths {:rhino "lein run -m org.mozilla.javascript.tools.shell.Main"}}
+  :aliases {"test" ["with-profile" "test" "doo" "rhino" "test" "once"]}
+  :profiles
+  {:test {:dependencies [[org.mozilla/rhino "1.7.7"]]
+          :cljsbuild
+          {:builds
+           {:test
+            {:source-paths ["src" "test"]
+             :compiler {:output-to "target/main.js"
+                        :output-dir "target"
+                        :main {{top-namespace}}.test-runner
+                        :optimizations :simple}}}}}})

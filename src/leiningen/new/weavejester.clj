@@ -17,7 +17,7 @@
   (let [data (template-data name)]
     (main/info "Generating new Clojure library project:" name)
     (tmpl/->files data
-                  ["project.clj" (render "project.clj" data)]
+                  ["project.clj" (render "project-clj.clj" data)]
                   ["README.md"   (render "README.md" data)]
                   [".gitignore"  (render "gitignore" data)]
                   ["src/{{nested-dirs}}.clj"       (render "core.clj" data)]
@@ -28,11 +28,11 @@
   (let [data (template-data name)]
     (main/info "Generating new ClojureScript library project:" name)
     (tmpl/->files data
-                  ["project.clj" (render "project.clj" data)]
+                  ["project.clj" (render "project-cljs.clj" data)]
                   ["README.md"   (render "README.md" data)]
                   [".gitignore"  (render "gitignore" data)]
-                  ["src/{{nested-dirs}}.clj"       (render "core.clj" data)]
-                  ["test/{{nested-dirs}}_test.clj" (render "test.clj" data)]
+                  ["src/{{nested-dirs}}.cljs"       (render "core.cljs" data)]
+                  ["test/{{nested-dirs}}_test.cljs" (render "test.cljs" data)]
                   "resources")))
 
 (defn weavejester

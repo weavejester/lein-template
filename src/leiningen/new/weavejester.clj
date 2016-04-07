@@ -13,7 +13,7 @@
      :year        (tmpl/year)
      :date        (tmpl/date)}))
 
-(defn clojure [name]
+(defn clj-project [name]
   (let [data (template-data name)]
     (main/info "Generating new Clojure library project:" name)
     (tmpl/->files data
@@ -24,7 +24,7 @@
                   ["test/{{nested-dirs}}_test.clj" (render "test.clj" data)]
                   "resources")))
 
-(defn clojurescript [name]
+(defn cljs-project [name]
   (let [data (template-data name)]
     (main/info "Generating new ClojureScript library project:" name)
     (tmpl/->files data
@@ -38,10 +38,10 @@
 (defn weavejester
   "Generate a new Clojure or ClojureScript project."
   ([name]
-   (weavejester name "clojure"))
+   (weavejester name "clj"))
   ([name type]
    (case type
-     "clojure"       (clojure name)
-     "clojurescript" (clojurescript name)
+     "clj"  (clj-project name)
+     "cljs" (cljs-project name)
      (main/abort "No such project type:" type))))
   

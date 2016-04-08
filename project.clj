@@ -1,4 +1,4 @@
-(defproject weavejester/lein-template "0.1.0-SNAPSHOT"
+(defproject weavejester/lein-template "0.0.1"
   :description "Leiningen templates for my projects"
   :url "https://github.com/weavejester/lein-template"
   :license {:name "Eclipse Public License"

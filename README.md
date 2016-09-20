@@ -5,7 +5,7 @@ ClojureScript so they're just the way I want them.
 
 ## Usage
 
-    lein new weavejester <project> [clj|cljs]
+    lein new weavejester <project> [clj|cljs|cljc]
 
 ## License
 

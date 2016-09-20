@@ -41,6 +41,19 @@
      ["test/{{top-dir}}/test_runner.cljs" (render "test_runner.cljs" data)]
      "resources")))
 
+(defn cljc-project [name]
+  (let [data (template-data name)]
+    (main/info "Generating new Clojure/ClojureScript library project:" name)
+    (tmpl/->files
+     data
+     ["project.clj" (render "project-cljc.clj" data)]
+     ["README.md"   (render "README.md" data)]
+     [".gitignore"  (render "gitignore" data)]
+     ["src/{{nested-dirs}}.cljc"          (render "core.cljc" data)]
+     ["test/{{nested-dirs}}_test.cljc"    (render "test.cljc" data)]
+     ["test/{{top-dir}}/test_runner.cljs" (render "test_runner.cljs" data)]
+     "resources")))
+
 (defn weavejester
   "Generate a new Clojure or ClojureScript project."
   ([name]
@@ -49,5 +62,6 @@
    (case type
      "clj"  (clj-project name)
      "cljs" (cljs-project name)
+     "cljc" (cljc-project name)
      (main/abort "No such project type:" type))))
   
